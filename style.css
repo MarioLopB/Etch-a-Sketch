@@ -18,12 +18,22 @@ body {
     flex-direction: column;
 }
 
+#sketch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .menu {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
     padding: 10px 20px;
+    width: 40vh;
+    height: 85vh;
+    background-color: rgb(61, 131, 211);
 }
 
 #grid-size {
@@ -42,9 +52,8 @@ body {
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     border-style: dotted;
-    border-radius: 2%;
-    width: 400px;
-    height: 400px;
+    width: 70vh;
+    height: 70vh;
     background-color: #fff;
     margin: 20px;
 }
