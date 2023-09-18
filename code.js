@@ -1,16 +1,9 @@
 const select_btn = document.getElementById('selectbtn');
 const container = document.getElementById('container');
-const grid_size = document.getElementById('grid-size');
+const grid_size = document.getElementById('grid_size');
+const background_color = document.getElementById('grid_color');
 const pen_color = document.getElementById('pen_color');
 let isClicked = false;
-
-document.addEventListener('mousedown', (e) => {
-    isClicked = true;
-});
-
-document.addEventListener('mouseup', (e) => {
-    isClicked = false;
-});
 
 function createGrid() {
     console.log(typeof grid_size.value);
@@ -29,6 +22,8 @@ function createGrid() {
         }
         const gridItems = document.querySelectorAll('.grid-item');
         gridItems.forEach((gridItem) => {
+            console.log(background_color.value);
+            gridItem.style.backgroundColor = background_color.value;
             gridItem.addEventListener('mouseover', () => {
                 if (isClicked) {
                     gridItem.style.backgroundColor = pen_color.value;
@@ -48,9 +43,24 @@ function clearGrid() {
     });
 }
 
+document.addEventListener('mousedown', (e) => {
+    isClicked = true;
+});
+
+document.addEventListener('mouseup', (e) => {
+    isClicked = false;
+});
+
 grid_size.addEventListener('input', (e) => {
     if (isClicked) {
         clearGrid();
         createGrid();
     }
+});
+
+background_color.addEventListener('input', (e) => {
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((gridItem) => {
+        gridItem.style.backgroundColor = background_color.value;
+    });
 });
