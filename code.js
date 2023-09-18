@@ -1,6 +1,7 @@
-const selectBtn = document.getElementById('selectbtn');
+const select_btn = document.getElementById('selectbtn');
 const container = document.getElementById('container');
 const grid_size = document.getElementById('grid-size');
+const pen_color = document.getElementById('pen_color');
 let isClicked = false;
 
 document.addEventListener('mousedown', (e) => {
@@ -17,11 +18,7 @@ function createGrid() {
     console.log(parseInt(grid_size.value));
 
     if (!isNaN(parseInt(grid_size.value))) {
-        if (grid_size.value > 100) {
-            grid_size.textContent = "100";
-            grid_size.value = 100;
-        }
-    
+
         container.style.setProperty('--grid-rows', grid_size.value);
         container.style.setProperty('--grid-cols', grid_size.value);
         for (let i = 0; i < (grid_size.value * grid_size.value); i++) {
@@ -34,7 +31,7 @@ function createGrid() {
         gridItems.forEach((gridItem) => {
             gridItem.addEventListener('mouseover', () => {
                 if (isClicked) {
-                    gridItem.style.backgroundColor = 'black';
+                    gridItem.style.backgroundColor = pen_color.value;
                 }
             });
         });
@@ -51,7 +48,9 @@ function clearGrid() {
     });
 }
 
-selectBtn.addEventListener('click', (e) => {
-    clearGrid();
-    createGrid();
+grid_size.addEventListener('input', (e) => {
+    if (isClicked) {
+        clearGrid();
+        createGrid();
+    }
 });

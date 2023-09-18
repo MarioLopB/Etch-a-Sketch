@@ -10,9 +10,18 @@
 </head>
 
 <body>
+    <h1 class="title">Etch-a-Sketch</h1>
     <div id="sketch">
         <div class="menu">
-            <input type="number" id="grid-size" min="1" max="100">
+            <div class="color_panel">
+                <input type="color" id="pen_color">
+                <div>Pen Color</div>
+            </div>
+            <div class="color_panel">
+                <input type="color" id="grid_color">
+                <div>Background Color</div>
+            </div>
+            <input type="range" id="grid-size" min="1" max="64">
             <button id="selectbtn">Select</button>
         </div>
         <div id="container"></div>

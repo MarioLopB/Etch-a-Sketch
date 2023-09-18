@@ -18,26 +18,52 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
 #sketch {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    width: 100vw;
+    justify-content: space-evenly;
+    gap: 50px
 }
 
 .menu {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
+    flex-direction: column;
     gap: 30px;
-    padding: 10px 20px;
-    width: 40vh;
-    height: 85vh;
+    padding: 10px 40px;
+    margin: 40px;
+    width:500px;
+    height: 80vh;
     background-color: rgb(61, 131, 211);
+    border-radius: 20px;
+}
+
+input {
+    border-color: #7f99de;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px
+}
+
+.color_panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
 }
 
 #grid-size {
-    width: 70px;
+    width: auto;
 }
 
 #selectBtn {
