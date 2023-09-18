@@ -3,7 +3,10 @@ const container = document.getElementById('container');
 const grid_size = document.getElementById('grid_size');
 const background_color = document.getElementById('grid_color');
 const pen_color = document.getElementById('pen_color');
+const grid_lines_btn = document.getElementById('grid_lines_btn');
+
 let isClicked = false;
+let isLinesPulsed = true;
 
 function createGrid() {
     console.log(typeof grid_size.value);
@@ -63,4 +66,20 @@ background_color.addEventListener('input', (e) => {
     gridItems.forEach((gridItem) => {
         gridItem.style.backgroundColor = background_color.value;
     });
+});
+
+grid_lines_btn.addEventListener('click', (e) => {
+    const gridItems = document.querySelectorAll('.grid-item');
+    if(isLinesPulsed){
+        gridItems.forEach((gridItem) => {
+            gridItem.style.border = "none";
+        });
+        isLinesPulsed = false;
+    } else {
+        gridItems.forEach((gridItem) => {
+            gridItem.style.border = "1px solid #ddd";
+        });
+        isLinesPulsed = true;
+    }
+    
 });
