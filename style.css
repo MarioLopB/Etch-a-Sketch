@@ -17,6 +17,7 @@ body {
     align-items: center;
     flex-direction: column;
     user-select: none;
+    color: #ddd;
 }
 
 h1 {
@@ -42,13 +43,17 @@ h1 {
     gap: 30px;
     padding: 10px 40px;
     margin: 40px;
-    width:300px;
+    width: 300px;
     height: 80vh;
     background-color: rgb(61, 131, 211);
     border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
 }
 
-input {
+#grid_color,
+#pen_color {
     border-color: #7f99de;
     border-radius: 5px;
     width: 30px;
@@ -63,16 +68,98 @@ input {
     gap: 10px;
 }
 
-#grid_size {
-    width: auto;
+.btn {
+    border-radius: 10px;
+    align-self: center;
+    width: 150px;
+    height: 40px;
+    background-color: #7f99de;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+    color: #7f99de;
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+     appearance: none;
+     background: transparent;
+     cursor: pointer;
+     width: 15rem;
+ }
+
+input[type=range]::-webkit-slider-runnable-track {
+    background: #053a5f;
+    border-radius: 0.5rem;
+    height: 0.5rem;
+}
+
+input[type=range]::-moz-slider-runnable-track {
+    background: #053a5f;
+    border-radius: 100px;
+    height: 50px;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin-top: -12px;
+    /* Centers thumb on the track */
+    background-color: #5cd5eb;
+    height: 25px;
+    width: 15px;
+    border-radius: 5px;
+}
+
+/***** Firefox *****/
+input[type="range"]::-moz-range-thumb {
+    border: none;
+    /*Removes extra border that FF applies*/
+    border-radius: 0;
+    /*Removes default border-radius that FF applies*/
+    background-color: #5cd5eb;
+    height: 25px;
+    width: 15px;
+    border-radius: 5px;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+    outline: none;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]:focus::-webkit-slider-thumb {
+    border: 1px solid #fff;
+    outline: 3px solid #fff;
+    outline-offset: 0.125rem;
+}
+
+/******** Firefox ********/
+input[type="range"]:focus::-moz-range-thumb {
+    border: 1px solid #fff;
+    outline: 3px solid #fff;
+    outline-offset: 0.125rem;
 }
 
 #selectBtn {
     border-radius: 10px;
     width: 50px;
 }
-
-.btn-animation {}
 
 #container {
     display: grid;
@@ -87,4 +174,4 @@ input {
 
 .grid-item {
     border: 1px solid #ddd;
-  }
+}

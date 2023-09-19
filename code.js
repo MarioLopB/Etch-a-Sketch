@@ -86,7 +86,7 @@ grid_lines_btn.addEventListener('click', (e) => {
         gridItems.forEach((gridItem) => {
             gridItem.style.border = "none";
         });
-        grid_lines_btn.style.cssText = "background-color: while; color: black;";
+        grid_lines_btn.style.cssText = "background-color: 7f99de;";
         isLinesPulsed = false;
     }
 
@@ -105,7 +105,7 @@ rainbow_btn.addEventListener('click', (e) => {
         rainbow_btn.style.cssText = "background-color: #4CAF50; color: white;";
         isRainbowPulsed = true;
     } else {
-        rainbow_btn.style.cssText = "background-color: while; color: black;";
+        rainbow_btn.style.cssText = "background-color: 7f99de;";
         isRainbowPulsed = false;
     }
 
