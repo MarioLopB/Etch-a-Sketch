@@ -6,11 +6,13 @@ const pen_color = document.getElementById('pen_color');
 const grid_lines_btn = document.getElementById('grid_lines_btn');
 const clear_btn = document.getElementById('clear_btn');
 const rainbow_btn = document.getElementById('rainbow_btn');
+const eraser_btn = document.getElementById('eraser_btn');
 const size_label = document.getElementById('size_label');
 
 let isClicked = false;
 let isLinesPulsed = false;
 let isRainbowPulsed = false;
+let isEraserPulsed = false;
 
 function createGrid() {
     console.log(typeof grid_size.value);
@@ -41,7 +43,9 @@ function createGrid() {
                 if (isClicked) {
                     if (isRainbowPulsed) {
                         gridItem.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-                    } else {
+                    } else if (isEraserPulsed) {
+                        gridItem.style.backgroundColor = background_color.value;
+                    }else {
                         gridItem.style.backgroundColor = pen_color.value;
                     }
                 }
@@ -107,8 +111,11 @@ clear_btn.addEventListener('click', (e) => {
 });
 
 rainbow_btn.addEventListener('click', (e) => {
-    const gridItems = document.querySelectorAll('.grid-item');
     if (!isRainbowPulsed) {
+        if(isEraserPulsed) {
+            eraser_btn.style.cssText = "background-color: 7f99de;";
+            isEraserPulsed = false;
+        }
         rainbow_btn.style.cssText = "background-color: #4CAF50; color: white;";
         isRainbowPulsed = true;
     } else {
@@ -116,4 +123,18 @@ rainbow_btn.addEventListener('click', (e) => {
         isRainbowPulsed = false;
     }
 
+});
+
+eraser_btn.addEventListener('click', (e) => {
+    if(!isEraserPulsed){
+        if(isRainbowPulsed){
+            rainbow_btn.style.cssText = "background-color: 7f99de;";
+            isRainbowPulsed = false;
+        }
+        eraser_btn.style.cssText = "background-color: #4CAF50; color: white;";
+        isEraserPulsed = true;
+    } else {
+        eraser_btn.style.cssText = "background-color: 7f99de;";
+        isEraserPulsed = false;
+    }
 });
