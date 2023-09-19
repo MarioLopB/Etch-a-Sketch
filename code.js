@@ -6,6 +6,7 @@ const pen_color = document.getElementById('pen_color');
 const grid_lines_btn = document.getElementById('grid_lines_btn');
 const clear_btn = document.getElementById('clear_btn');
 const rainbow_btn = document.getElementById('rainbow_btn');
+const size_label = document.getElementById('size_label');
 
 let isClicked = false;
 let isLinesPulsed = false;
@@ -29,7 +30,7 @@ function createGrid() {
         const gridItems = document.querySelectorAll('.grid-item');
         gridItems.forEach((gridItem) => {
             console.log(background_color.value);
-            if(isLinesPulsed){
+            if (isLinesPulsed) {
                 gridItem.style.border = "1px solid #ddd";
             } else {
                 gridItem.style.border = "none";
@@ -59,6 +60,10 @@ function clearGrid() {
     });
 }
 
+function changeText() {
+    size_label.textContent = grid_size.value + "x" + grid_size.value;
+}
+
 document.addEventListener('mousedown', (e) => {
     isClicked = true;
 });
@@ -67,11 +72,13 @@ document.addEventListener('mouseup', (e) => {
     isClicked = false;
 });
 
+grid_size.addEventListener('mouseup', (e) => {
+    clearGrid();
+    createGrid();
+});
+
 grid_size.addEventListener('input', (e) => {
-    if (isClicked) {
-        clearGrid();
-        createGrid();
-    }
+    changeText();
 });
 
 grid_lines_btn.addEventListener('click', (e) => {

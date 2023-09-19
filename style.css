@@ -93,6 +93,11 @@ h1 {
     transform: scale(0.9);
 }
 
+#size_label {
+    align-self: center;
+    font-size: 20px;
+}
+
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -183,7 +188,7 @@ input[type="range"]:focus::-moz-range-thumb {
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     width: 70vh;
     height: 70vh;
-    background-color: #fff;
+    background-color: #7f99de;
     margin: 20px;
     border: 20px solid rgb(61, 131, 211);
 }
