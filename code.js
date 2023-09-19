@@ -14,6 +14,9 @@ let isLinesPulsed = false;
 let isRainbowPulsed = false;
 let isEraserPulsed = false;
 
+createGrid();
+changeText();
+
 function createGrid() {
     console.log(typeof grid_size.value);
 
