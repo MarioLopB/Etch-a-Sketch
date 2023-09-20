@@ -4,4 +4,4 @@
 Painting program where you can change the number of pixels.\
 It has **two** modes:\
 -**Rainbow mode**\
--**Eraser mode**\
+-**Eraser mode**
