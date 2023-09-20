@@ -72,6 +72,7 @@ function setRainbowMode() {
     }
 }
 
+// Function to set the eraser mode
 function setEraserMode() {
     if (!isEraserPulsed) {
         if (isRainbowPulsed) {
