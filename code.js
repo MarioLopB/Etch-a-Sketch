@@ -1,3 +1,6 @@
+// Author: Mario López Barazón
+
+// DOM Elements
 const select_btn = document.getElementById('selectbtn');
 const container = document.getElementById('container');
 const grid_size = document.getElementById('grid_size');
@@ -9,6 +12,7 @@ const rainbow_btn = document.getElementById('rainbow_btn');
 const eraser_btn = document.getElementById('eraser_btn');
 const size_label = document.getElementById('size_label');
 
+// Variables
 let isClicked = false;
 let isLinesPulsed = false;
 let isRainbowPulsed = false;
