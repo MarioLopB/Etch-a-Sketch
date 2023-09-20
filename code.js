@@ -14,9 +14,75 @@ let isLinesPulsed = false;
 let isRainbowPulsed = false;
 let isEraserPulsed = false;
 
-createGrid();
-changeText();
+// Functions
+// Function to paint the grid
+function paintGrid(gridItem) {
+    if (isRainbowPulsed) {
+        gridItem.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    } else if (isEraserPulsed) {
+        gridItem.style.backgroundColor = background_color.value;
+    } else {
+        gridItem.style.backgroundColor = pen_color.value;
+    }
+}
 
+// Function to clear the background
+function clearBackground() {
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((gridItem) => {
+        gridItem.style.backgroundColor = background_color.value;
+    });
+}
+
+// Function to set the grid lines
+function setGridLines() {
+    const gridItems = document.querySelectorAll('.grid-item');
+    if (!isLinesPulsed) {
+        gridItems.forEach((gridItem) => {
+            gridItem.style.border = "1px solid #ddd";
+        });
+        grid_lines_btn.style.cssText = "background-color: #4CAF50; color: white;";
+        isLinesPulsed = true;
+    } else {
+        gridItems.forEach((gridItem) => {
+            gridItem.style.border = "none";
+        });
+        grid_lines_btn.style.cssText = "background-color: 7f99de;";
+        isLinesPulsed = false;
+    }
+
+}
+
+// Function to set the rainbow mode
+function setRainbowMode() {
+    if (!isRainbowPulsed) {
+        if (isEraserPulsed) {
+            eraser_btn.style.cssText = "background-color: 7f99de;";
+            isEraserPulsed = false;
+        }
+        rainbow_btn.style.cssText = "background-color: #4CAF50; color: white;";
+        isRainbowPulsed = true;
+    } else {
+        rainbow_btn.style.cssText = "background-color: 7f99de;";
+        isRainbowPulsed = false;
+    }
+}
+
+function setEraserMode() {
+    if (!isEraserPulsed) {
+        if (isRainbowPulsed) {
+            rainbow_btn.style.cssText = "background-color: 7f99de;";
+            isRainbowPulsed = false;
+        }
+        eraser_btn.style.cssText = "background-color: #4CAF50; color: white;";
+        isEraserPulsed = true;
+    } else {
+        eraser_btn.style.cssText = "background-color: 7f99de;";
+        isEraserPulsed = false;
+    }
+}
+
+// Function to create the grid
 function createGrid() {
 
     container.style.setProperty('--grid-rows', grid_size.value);
@@ -39,29 +105,18 @@ function createGrid() {
         gridItem.style.backgroundColor = background_color.value;
         gridItem.addEventListener('mouseover', () => {
             if (isClicked) {
-                if (isRainbowPulsed) {
-                    gridItem.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-                } else if (isEraserPulsed) {
-                    gridItem.style.backgroundColor = background_color.value;
-                } else {
-                    gridItem.style.backgroundColor = pen_color.value;
-                }
+                paintGrid(gridItem);
             }
         });
 
         gridItem.addEventListener('mousedown', () => {
-            if (isRainbowPulsed) {
-                gridItem.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-            } else if (isEraserPulsed) {
-                gridItem.style.backgroundColor = background_color.value;
-            } else {
-                gridItem.style.backgroundColor = pen_color.value;
-            }
+            paintGrid(gridItem);
         });
     });
 
 }
 
+// Function to clear the grid
 function clearGrid() {
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((gridItem) => {
@@ -69,77 +124,54 @@ function clearGrid() {
     });
 }
 
+// Function to change the text of the label
 function changeText() {
     size_label.textContent = grid_size.value + "x" + grid_size.value;
 }
 
+// Event Listeners
+// Event listener to monitor the mouse click down
 document.addEventListener('mousedown', (e) => {
     isClicked = true;
 });
 
+// Event listener to monitor the mouse click up
 document.addEventListener('mouseup', (e) => {
     isClicked = false;
 });
 
+// Event listener to create a new grid
 grid_size.addEventListener('mouseup', (e) => {
     clearGrid();
     createGrid();
 });
 
+// Event listener to change the text of the label
 grid_size.addEventListener('input', (e) => {
     changeText();
 });
 
+// Event listener to put the grid lines
 grid_lines_btn.addEventListener('click', (e) => {
-    const gridItems = document.querySelectorAll('.grid-item');
-    if (!isLinesPulsed) {
-        gridItems.forEach((gridItem) => {
-            gridItem.style.border = "1px solid #ddd";
-        });
-        grid_lines_btn.style.cssText = "background-color: #4CAF50; color: white;";
-        isLinesPulsed = true;
-    } else {
-        gridItems.forEach((gridItem) => {
-            gridItem.style.border = "none";
-        });
-        grid_lines_btn.style.cssText = "background-color: 7f99de;";
-        isLinesPulsed = false;
-    }
-
+    setGridLines();
 });
 
+// Event listener to clear the grid
 clear_btn.addEventListener('click', (e) => {
-    const gridItems = document.querySelectorAll('.grid-item');
-    gridItems.forEach((gridItem) => {
-        gridItem.style.backgroundColor = background_color.value;
-    });
+    clearBackground();
 });
 
+// Event listener to set the rainbow mode
 rainbow_btn.addEventListener('click', (e) => {
-    if (!isRainbowPulsed) {
-        if (isEraserPulsed) {
-            eraser_btn.style.cssText = "background-color: 7f99de;";
-            isEraserPulsed = false;
-        }
-        rainbow_btn.style.cssText = "background-color: #4CAF50; color: white;";
-        isRainbowPulsed = true;
-    } else {
-        rainbow_btn.style.cssText = "background-color: 7f99de;";
-        isRainbowPulsed = false;
-    }
-
+    setRainbowMode();
 });
 
+// Event listener to set the eraser mode
 eraser_btn.addEventListener('click', (e) => {
-    if (!isEraserPulsed) {
-        if (isRainbowPulsed) {
-            rainbow_btn.style.cssText = "background-color: 7f99de;";
-            isRainbowPulsed = false;
-        }
-        eraser_btn.style.cssText = "background-color: #4CAF50; color: white;";
-        isEraserPulsed = true;
-    } else {
-        eraser_btn.style.cssText = "background-color: 7f99de;";
-        isEraserPulsed = false;
-    }
+    setEraserMode();
 });
+
+// Create the grid at the start
+createGrid();
+// Change the text of the label at the start
+changeText();
