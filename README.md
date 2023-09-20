@@ -1,2 +1,2 @@
 # **Etch-a-Sketch**
-<img src="./image/example_page.png" width=200px heigh=300px>
+<img src="../image/example_page.png" width=200px heigh=300px>
