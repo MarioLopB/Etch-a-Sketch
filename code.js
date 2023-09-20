@@ -89,30 +89,39 @@ function setEraserMode() {
 // Function to create the grid
 function createGrid() {
 
+    // Set the grid size
     container.style.setProperty('--grid-rows', grid_size.value);
     container.style.setProperty('--grid-cols', grid_size.value);
+
+    // Create the grid
     for (let i = 0; i < (grid_size.value * grid_size.value); i++) {
         let cell = document.createElement('div');
         container.appendChild(cell);
         cell.classList.add('grid-item');
         console.log("div created");
     }
+
+    // Give the grid lines at the start
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((gridItem) => {
-        console.log(background_color.value);
         if (isLinesPulsed) {
             gridItem.style.border = "1px solid #ddd";
         } else {
             gridItem.style.border = "none";
         }
 
+        // Set the background color
         gridItem.style.backgroundColor = background_color.value;
+
+        // Add the event listeners
+        // Event listener to paint the grid when the mouse is over
         gridItem.addEventListener('mouseover', () => {
             if (isClicked) {
                 paintGrid(gridItem);
             }
         });
 
+        // Event listener to paint the grid when the mouse is clicked
         gridItem.addEventListener('mousedown', () => {
             paintGrid(gridItem);
         });
