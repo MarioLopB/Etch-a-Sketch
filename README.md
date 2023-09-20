@@ -1,7 +1,7 @@
 # **Etch-a-Sketch**
 ![example_page](https://github.com/MarioLopB/Etch-a-Sketch/assets/91263678/1ddf20c5-394a-4c26-8c06-911dab397e2d)
 
-Painting program where you can change the number of pixels._
-It has **two** modes:_
--**Rainbow mode**_
--**Eraser mode**
+Painting program where you can change the number of pixels.\
+It has **two** modes:\
+-**Rainbow mode**\
+-**Eraser mode**\
