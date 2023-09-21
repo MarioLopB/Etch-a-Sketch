@@ -17,6 +17,7 @@ let isClicked = false;
 let isLinesPulsed = false;
 let isRainbowPulsed = false;
 let isEraserPulsed = false;
+let auxbackground_color;
 
 // Functions
 // Function to paint the grid
@@ -28,6 +29,42 @@ function paintGrid(gridItem) {
     } else {
         gridItem.style.backgroundColor = pen_color.value;
     }
+}
+
+// Function to convert rgb to hex
+function convertRgb(rgb) {
+    // This will choose the correct separator, if there is a "," in your value it will use a comma, otherwise, a separator will not be used.
+    var separator = rgb.indexOf(",") > -1 ? "," : " ";
+
+
+    // This will convert "rgb(r,g,b)" into [r,g,b] so we can use the "+" to convert them back to numbers before using toString 
+    rgb = rgb.substr(4).split(")")[0].split(separator);
+
+    // Here we will convert the decimal values to hexadecimal using toString(16)
+    var r = (+rgb[0]).toString(16),
+        g = (+rgb[1]).toString(16),
+        b = (+rgb[2]).toString(16);
+
+    if (r.length == 1)
+        r = "0" + r;
+    if (g.length == 1)
+        g = "0" + g;
+    if (b.length == 1)
+        b = "0" + b;
+
+    // The return value is a concatenation of "#" plus the rgb values which will give you your hex
+    return "#" + r + g + b;
+}
+
+function changeBackground() {
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((gridItem) => {
+        if (convertRgb(gridItem.style.backgroundColor) == auxbackground_color) {
+            gridItem.style.backgroundColor = background_color.value;
+        }
+    });
+
+    auxbackground_color = background_color.value;
 }
 
 // Function to clear the background
@@ -113,6 +150,7 @@ function createGrid() {
 
         // Set the background color
         gridItem.style.backgroundColor = background_color.value;
+        auxbackground_color = background_color.value;
 
         // Add the event listeners
         // Event listener to paint the grid when the mouse is over
@@ -161,29 +199,21 @@ grid_size.addEventListener('mouseup', (e) => {
 });
 
 // Event listener to change the text of the label
-grid_size.addEventListener('input', (e) => {
-    changeText();
-});
+grid_size.addEventListener('input', changeText);
 
 // Event listener to put the grid lines
-grid_lines_btn.addEventListener('click', (e) => {
-    setGridLines();
-});
+grid_lines_btn.addEventListener('click', setGridLines);
+
+background_color.addEventListener('input', changeBackground);
 
 // Event listener to clear the grid
-clear_btn.addEventListener('click', (e) => {
-    clearBackground();
-});
+clear_btn.addEventListener('click', clearBackground);
 
 // Event listener to set the rainbow mode
-rainbow_btn.addEventListener('click', (e) => {
-    setRainbowMode();
-});
+rainbow_btn.addEventListener('click', setRainbowMode);
 
 // Event listener to set the eraser mode
-eraser_btn.addEventListener('click', (e) => {
-    setEraserMode();
-});
+eraser_btn.addEventListener('click', setEraserMode);
 
 // Create the grid at the start
 createGrid();
