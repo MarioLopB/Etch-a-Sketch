@@ -56,6 +56,7 @@ function convertRgb(rgb) {
     return "#" + r + g + b;
 }
 
+// Function to change the background
 function changeBackground() {
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((gridItem) => {
